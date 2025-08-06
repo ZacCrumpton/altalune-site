@@ -25,14 +25,13 @@ export default function Contact() {
         />
         <div className="absolute inset-0 z-0 pointer-events-none bg-[url('/images/noise.png')] bg-repeat opacity-[0.04]" />
 
-        <div className="relative z-10 flex flex-col items-center gap-4 pt-6">
-          <img src={logo} alt="Altalune Logo" className="h-auto w-40 sm:w-60 md:w-[500px] max-w-[80%]" />
-          <p className="font-typewriter text-xs sm:text-sm uppercase tracking-wider text-white/80 max-w-xs">
-            Reach out about shows, press, or just say hey — we read everything.
-          </p>
+        <div className="relative z-10 flex flex-col items-center gap-4 pt-24">
           <h1 className="text-2xl sm:text-3xl md:text-6xl font-bold text-altalune-orange tracking-tight pb-3">
             Get in Touch
           </h1>
+          <p className="font-typewriter text-xs sm:text-sm uppercase tracking-wider text-white/80 max-w-xs">
+            Reach out about shows, press, or just say hey — we read everything.
+          </p>
         </div>
       </div>
 
