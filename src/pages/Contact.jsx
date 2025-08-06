@@ -38,32 +38,30 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-4 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-6 text-sm">
-            <h2 className="text-xl font-semibold font-typewriter text-white mb-4 -rotate-2 tracking-widest">
-              Contact Us
-            </h2>
+          <form
+            action="https://formspree.io/f/xanbpvjl"
+            method="POST"
+            className="space-y-6 text-sm"
+          >
             <input
-              className="w-full p-4 bg-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-altalune-orange"
               type="text"
               name="name"
               placeholder="Your Name"
-              value={form.name}
-              onChange={handleChange}
+              required
+              className="w-full p-4 bg-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-altalune-orange"
             />
             <input
-              className="w-full p-4 bg-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-altalune-orange"
               type="email"
               name="email"
               placeholder="Your Email"
-              value={form.email}
-              onChange={handleChange}
+              required
+              className="w-full p-4 bg-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-altalune-orange"
             />
             <textarea
-              className="w-full p-4 h-40 bg-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-altalune-orange"
               name="message"
               placeholder="Your Message"
-              value={form.message}
-              onChange={handleChange}
+              required
+              className="w-full p-4 h-40 bg-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-altalune-orange"
             />
             <button
               type="submit"
@@ -72,6 +70,7 @@ export default function Contact() {
               Send Message
             </button>
           </form>
+
 
           {/* Mailing List Signup */}
           <div className="space-y-6 text-sm">
