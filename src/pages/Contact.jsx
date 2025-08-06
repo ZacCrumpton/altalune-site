@@ -38,6 +38,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-4 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Form */}
+          <div className="space-y-6 text-sm">
           <h2 className="text-xl font-semibold font-typewriter text-white mb-4 -rotate-2 tracking-widest">
               Contact Us
             </h2>
@@ -73,7 +74,7 @@ export default function Contact() {
               Send Message
             </button>
           </form>
-
+          </div>
 
           {/* Mailing List Signup */}
           <div className="space-y-6 text-sm">
