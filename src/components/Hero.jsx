@@ -1,0 +1,83 @@
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import bandPhotoDesktop from "../../public/images/band1.jpg";
+import bandPhotoMobile from "../../public/images/band1-mobile.jpg";
+import logo from "../assets/logos/Alta_Logo.png";
+import noise from "../../public/images/noise.webp";
+import HeroTextMotion from "./HeroTextMotion";
+
+export default function Hero() {
+  const containerRef = useRef(null);
+  const textRef = useRef(null);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const textScroll = useScroll({
+    target: textRef,
+    offset: ["start center", "end start"],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "6%"] : ["0%", "20%"]);
+
+  const rawLogoScale = useTransform(scrollYProgress, [0.15, 0.5], [1, 0.85]);
+  const logoScale = useSpring(rawLogoScale, { stiffness: 100, damping: 20 });
+
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0.5]);
+  const heroImage = isMobile ? bandPhotoMobile : bandPhotoDesktop;
+
+  return (
+    <section
+      ref={containerRef}
+      className="relative w-full h-[100dvh] md:h-screen overflow-hidden text-white bg-altalune-black"
+    >
+      {/* Background Image */}
+      <motion.img
+        src={heroImage}
+        alt="Altalune Band"
+        className="absolute inset-0 w-full h-full object-cover object-bottom"
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        style={{ y: bgY }}
+      />
+
+      {/* Noise Texture */}
+      <div
+        className="absolute inset-0 bg-cover bg-center mix-blend-screen opacity-10 pointer-events-none"
+        style={{ backgroundImage: `url(${noise})` }}
+      />
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90 pointer-events-none" />
+
+      {/* Foreground Content */}
+      <div
+        ref={textRef}
+        className="absolute z-10 top-[23%] md:top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 text-center"
+      >
+        <motion.img
+          src={logo}
+          alt="Altalune Logo"
+          className="w-32 sm:w-40 md:w-80 mb-4 md:mb-6 will-change-transform"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1, ease: "easeOut" }}
+          style={{ scale: logoScale, opacity: logoOpacity }}
+        />
+
+        <HeroTextMotion scrollProgress={textScroll.scrollYProgress} />
+      </div>
+    </section>
+  );
+}

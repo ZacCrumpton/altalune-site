@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (max-width: 767px) {
+  #shows .mobile-stack {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shows .mobile-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #shows .mobile-content {
+    width: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
