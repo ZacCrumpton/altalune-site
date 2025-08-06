@@ -38,6 +38,9 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-4 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Form */}
+          <h2 className="text-xl font-semibold font-typewriter text-white mb-4 -rotate-2 tracking-widest">
+              Contact Us
+            </h2>
           <form
             action="https://formspree.io/f/xanbpvjl"
             method="POST"
