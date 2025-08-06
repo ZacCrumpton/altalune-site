@@ -17,6 +17,20 @@ const shows = [
     isUpcoming: true,
   },
   {
+    id: 12,
+    date: 'September 05, 2025',
+    venue: "Twisted Tea Garden",
+    location: 'Madison, TN',
+    isUpcoming: true,
+  },
+  {
+    id: 13,
+    date: 'November 07, 2025',
+    venue: "5 Spot",
+    location: 'Nashville, TN',
+    isUpcoming: true,
+  },
+  {
     id: 2,
     date: 'July 16, 2025',
     venue: 'Arcane Workshop',
