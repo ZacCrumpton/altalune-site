@@ -1,27 +1,27 @@
 import React, { useEffect, useRef } from "react";
 import { Parallax } from "react-scroll-parallax";
 import { motion } from "framer-motion";
-import logo from "../assets/logos/Alta_Logo.png";
+import logo from "../assets/logos/Alta_Logo.webp";
 
 const Media = () => {
   const widePhotos = [
-    { src: "/images/live3.jpg", caption: "Zach // The End // 07.2024" },
-    { src: "/images/live6.jpg", caption: "Atalune in Motion // 07.2024" },
-    { src: "/images/live7.jpg", caption: "crowd blur" },
-    { src: "/images/live9.jpg", caption: "burned into film" },
-    { src: "/images/live10.jpg", caption: "light fractures" },
+    { src: "/images/live3.webp", caption: "Zach // The End // 07.2024" },
+    { src: "/images/live6.webp", caption: "Atalune in Motion // 07.2024" },
+    { src: "/images/live7.webp", caption: "crowd blur" },
+    { src: "/images/live9.webp", caption: "burned into film" },
+    { src: "/images/live10.webp", caption: "light fractures" },
   ];
 
   const tallPhotos = [
-    { src: "/images/live1.jpg", caption: "Zac // The Basement // 07.2024" },
-    { src: "/images/live2.jpg", caption: "Connor // The Basement // 07.2024" },
-    { src: "/images/live4.jpg", caption: "Aaron // The End // 07.2024" },
-    { src: "/images/live5.jpg", caption: "// end of set chaos" },
-    { src: "/images/live8.jpg", caption: "hands raised / sound breaks" },
-    { src: "/images/live11.jpg", caption: "feedback + fury" },
-    { src: "/images/live12.jpg", caption: "swept away in noise" },
-    { src: "/images/live13.jpg", caption: "swept away in noise" },
-    { src: "/images/live14.jpg", caption: "swept away in noise" },
+    { src: "/images/live1.webp", caption: "Zac // The Basement // 07.2024" },
+    { src: "/images/live2.webp", caption: "Connor // The Basement // 07.2024" },
+    { src: "/images/live4.webp", caption: "Aaron // The End // 07.2024" },
+    { src: "/images/live5.webp", caption: "// end of set chaos" },
+    { src: "/images/live8.webp", caption: "hands raised / sound breaks" },
+    { src: "/images/live11.webp", caption: "feedback + fury" },
+    { src: "/images/live12.webp", caption: "swept away in noise" },
+    { src: "/images/live13.webp", caption: "swept away in noise" },
+    { src: "/images/live14.webp", caption: "swept away in noise" },
   ];
 
   const waveRef = useRef(null);
