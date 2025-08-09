@@ -4,6 +4,8 @@ import { useState } from 'react';
 const shows = [
   { id: 1, date: 'August 15, 2025', venue: 'Indie Luna', location: 'Nashville, TN', isUpcoming: true },
   { id: 11, date: 'August 30, 2025', venue: "Eastside Bowl '58", location: 'Nashville, TN', isUpcoming: true },
+  { id: 12, date: 'September 05, 2025', venue: 'Twisted Tea Garden', location: 'Madison, TN', isUpcoming: true },
+  { id:13, date: 'November 07, 2025', venue: '5 Spot', location: 'Nashville, TN', isUpcoming: true },
   { id: 2, date: 'July 16, 2025', venue: 'Arcane Workshop', location: 'Madison, TN', isUpcoming: false },
   { id: 3, date: 'July 02, 2025', venue: 'JBJs', location: 'Nashville, TN', isUpcoming: false },
   { id: 4, date: 'June 27, 2025', venue: 'The Dollhouse', location: 'Mufreesboro, TN', isUpcoming: false },
