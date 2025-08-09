@@ -1,8 +1,8 @@
 // src/pages/Contact.jsx
 import React, { useState } from 'react';
 import { FaInstagram, FaSpotify, FaEnvelope } from 'react-icons/fa';
-import logo from "../assets/logos/Alta_Logo.png";
-import heroImage from "../../public/images/contact_bg.jpg";
+import logo from "../assets/logos/Alta_Logo.webp";
+import heroImage from "../../public/images/contact_bg.webp";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -86,7 +86,7 @@ export default function Contact() {
               Get updates on new music, shows, and exclusive drops. No spam — we promise.
             </p>
             <form
-              action="https://formspree.io/f/yourFormID"
+              action="https://formspree.io/f/mqalyndw"
               method="POST"
               className="space-y-4"
             >

@@ -6,7 +6,7 @@ import {
   useMotionValue,
 } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
-import bandPic from "../../public/images/band2.jpg";
+import bandPic from "../../public/images/band2.webp";
 
 const AboutSection = () => {
   const ref = useRef(null);

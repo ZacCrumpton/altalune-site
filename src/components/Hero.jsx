@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import bandPhotoDesktop from "../../public/images/band1.jpg";
-import bandPhotoMobile from "../../public/images/band1-mobile.jpg";
+import bandPhotoDesktop from "../../public/images/band1.webp";
+import bandPhotoMobile from "../../public/images/band1-mobile.webp";
 import logo from "../assets/logos/Alta_Logo.png";
 import noise from "../../public/images/noise.webp";
 import HeroTextMotion from "./HeroTextMotion";

@@ -106,7 +106,7 @@ export default function ShowsSection() {
         {/* Left: Photo (1/3) */}
         <div className="col-span-1 px-6 mb-10 md:mb-0">
           <img
-            src="/images/band3.jpg"
+            src="/images/band3.webp"
             alt="Altalune Live Promo"
             className="w-full h-auto object-cover rounded-xl shadow-lg"
           />
