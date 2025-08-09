@@ -7,21 +7,21 @@ const Media = () => {
   const widePhotos = [
     { src: "/images/live3.webp", caption: "Zach // The End // 07.2024" },
     { src: "/images/live6.webp", caption: "Atalune in Motion // 07.2024" },
-    { src: "/images/live7.webp", caption: "crowd blur" },
-    { src: "/images/live9.webp", caption: "burned into film" },
-    { src: "/images/live10.webp", caption: "light fractures" },
+    { src: "/images/live7.webp", caption: "Zac // The End // 07.2024" },
+    { src: "/images/live9.webp", caption: "Zach // The Basement // 07.2024" },
+    { src: "/images/live10.webp", caption: "Altalune // The Basement // 07.2024" },
   ];
 
   const tallPhotos = [
     { src: "/images/live1.webp", caption: "Zac // The Basement // 07.2024" },
     { src: "/images/live2.webp", caption: "Connor // The Basement // 07.2024" },
     { src: "/images/live4.webp", caption: "Aaron // The End // 07.2024" },
-    { src: "/images/live5.webp", caption: "// end of set chaos" },
-    { src: "/images/live8.webp", caption: "hands raised / sound breaks" },
-    { src: "/images/live11.webp", caption: "feedback + fury" },
-    { src: "/images/live12.webp", caption: "swept away in noise" },
-    { src: "/images/live13.webp", caption: "swept away in noise" },
-    { src: "/images/live14.webp", caption: "swept away in noise" },
+    { src: "/images/live5.webp", caption: "Zac + Connor // The End // 07.2024" },
+    { src: "/images/live8.webp", caption: "Aaron // The End // 07.2024" },
+    { src: "/images/live11.webp", caption: "Zach // The Basement // 072024" },
+    { src: "/images/live12.webp", caption: "Zac // The Basement // 07.2024" },
+    { src: "/images/live13.webp", caption: "Connor // The End // 07.2024" },
+    { src: "/images/live14.webp", caption: "Zach // The End // 07.2024" },
   ];
 
   const waveRef = useRef(null);
