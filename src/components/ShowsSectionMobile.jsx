@@ -25,7 +25,7 @@ export default function ShowsSection() {
   return (
     <section id="shows" className="bg-black text-white px-4 py-10 space-y-10">
       <img
-        src="/images/band3.jpg"
+        src="/images/band3.webp"
         alt="Altalune Live Promo"
         className="w-full h-[300px] object-cover object-[center_25%] rounded-xl shadow-lg"
       />
