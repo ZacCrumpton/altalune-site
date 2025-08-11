@@ -9,7 +9,7 @@ const HeroTextMotion = () => {
   const pX = useTransform(scrollYProgress, [0, 1], ['0%', '-100%']);
 
   return (
-    <div className="text-center mt-4 md:mt-6 px-2">
+    <div className="text-center mt-4 md:mt-6 px-2 pt-20">
       <motion.h1
         style={{ x: h1X, fontFamily: "'Courier Prime', monospace" }}
         className="text-lg sm:text-xl md:text-4xl font-bold text-gray-300 leading-snug sm:leading-normal"

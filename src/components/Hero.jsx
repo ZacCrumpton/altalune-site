@@ -45,7 +45,7 @@ export default function Hero() {
       <motion.img
         src={heroImage}
         alt="Altalune Band"
-        className="absolute inset-0 w-full h-full object-cover object-bottom"
+        className="absolute inset-0 w-full h-full object-cover object-center"
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -64,12 +64,12 @@ export default function Hero() {
       {/* Foreground Content */}
       <div
         ref={textRef}
-        className="absolute z-10 top-[23%] md:top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 text-center"
+        className="absolute z-10 top-[23%] md:top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 text-center"
       >
         <motion.img
           src={logo}
           alt="Altalune Logo"
-          className="w-32 sm:w-40 md:w-80 mb-4 md:mb-6 will-change-transform"
+          className="w-32 sm:w-40 md:w-80 mb-4 md:mb-0 will-change-transform"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1, ease: "easeOut" }}
