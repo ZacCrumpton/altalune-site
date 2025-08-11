@@ -27,12 +27,9 @@ export default function EPSection() {
           animate={isInView ? { x: 0, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
         >
-          <h2 className="text-4xl font-bold mb-4">Debut EP Realeasing August 29th</h2>
+          <h2 className="text-4xl font-bold mb-4">This Is Where It Starts</h2>
           <p className="text-lg text-gray-300 mb-6">
-            'When the Days Feel Long and Endless'<br/>
-            is a collection of home recorded songs 
-            mixed and masterd by Hilson Studio.<br/>These songs retell moments of unfinished conversations with emotional weight.<br/>
-            These are the songs that Altalune lives and breathes.
+            <i>When the Days Feel Long and Endless</i><br/>is five songs about the weight we carry when closure never comes.<br/>Home-recorded. Honest. Unapologetically Altalune.
           </p>
           <a
             href="http://url2734.distrokid.com/ls/click?upn=u001.a0grtTtFNGObbwv02PitCPUodymsTWKXNsD1pT7nhD1voSYVUOQoV0d16O8EPS8o5UAdB4JupzssDkuPR5CAEeaCrTismy07locxqCo7fPfBiqRCAIPFRIROs7BWFo1ZI7IjvScIeoEiids76UXMDWwnrThp9u6jbJbyT0cIIeRTJerbpybbjDYGjjwxTpLu9-2BGIxd4p932deIGPYr4d-2FA-3D-3DA_HA_S9x-2F4WrkvVmOfBvwqdpjL4pxA3lq58-2Feyios8DtZqZ7juhaKHAoceONif-2Fxh6hQq-2Bv0AYduDeRH8Tfn7xQLOTXYa-2Fl3xlpS0Uocts5oROj2xz9I5LYkkX5yU6XqeF1rQaMgSa3wlWOTO8nv2e9DQKIuywS6e12YdroWCo92kmhaZfouVpMK7z1pCmUoKQUBInHZtVSDnBpue2OrivuwbUQ-3D-3D"

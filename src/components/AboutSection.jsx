@@ -64,9 +64,9 @@ const AboutSection = () => {
         <div className="mt-10 bg-black/60 text-white p-6 rounded-md w-[90%] max-w-md text-center mx-auto">
           <h2 className="text-3xl font-semibold mb-4">Emotional Noise</h2>
           <p className="text-sm leading-relaxed">
-            From Nashville, TN, we are an Alternative Rock band with heavy influences from the Emo and
-            Post-Hardcore Genres without feeling restricted to these genre titles. With unyielding dedication
-            to the diy ethos; we do everything we can to keep our art in our hands.
+            We’re Altalune from Nashville, TN. We make loud, emotional music that lives
+            somewhere between emo, post-hardcore and whatever else we feel like.
+            We’ve been DIY from the start, writing our songs, creating our art and shaping our vision, and we bring that same hands-on energy into everything we do.
           </p>
         </div>
       </div>
