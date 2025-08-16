@@ -1,26 +1,96 @@
 import React from 'react';
 import { useState } from 'react';
 
+function isUpcoming(dateString) {
+  const showDate = new Date(dateString);
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return showDate >= today;
+}
+
 const shows = [
-  { id: 1, date: 'August 15, 2025', venue: 'Indie Luna', location: 'Nashville, TN', isUpcoming: true },
-  { id: 11, date: 'August 30, 2025', venue: "Eastside Bowl '58", location: 'Nashville, TN', isUpcoming: true },
-  { id: 12, date: 'September 05, 2025', venue: 'Twisted Tea Garden', location: 'Madison, TN', isUpcoming: true },
-  { id:13, date: 'November 07, 2025', venue: '5 Spot', location: 'Nashville, TN', isUpcoming: true },
-  { id: 2, date: 'July 16, 2025', venue: 'Arcane Workshop', location: 'Madison, TN', isUpcoming: false },
-  { id: 3, date: 'July 02, 2025', venue: 'JBJs', location: 'Nashville, TN', isUpcoming: false },
-  { id: 4, date: 'June 27, 2025', venue: 'The Dollhouse', location: 'Mufreesboro, TN', isUpcoming: false },
-  { id: 5, date: 'June 13, 2025', venue: 'The Vinyl Lounge', location: 'Nashville, TN', isUpcoming: false },
-  { id: 6, date: 'May 24, 2025', venue: 'The Dollhouse', location: 'Murfreesboro, TN', isUpcoming: false },
-  { id: 7, date: 'May 23, 2025', venue: 'Basement East', location: 'Nashville, TN', isUpcoming: false },
-  { id: 8, date: 'April 10, 2025', venue: 'Bettys', location: 'Nashville, TN', isUpcoming: false },
-  { id: 9, date: 'March 28, 2025', venue: 'High Ground', location: 'Nashville, TN', isUpcoming: false },
-  { id: 10, date: 'January 30, 2025', venue: 'Springwater', location: 'Nashville, TN', isUpcoming: false },
+  { id: 1,
+    date: 'August 15, 2025',
+    venue: 'Indie Luna',
+    location: 'Nashville, TN',
+  },
+
+  { id: 11,
+    date: 'August 30, 2025',
+    venue: "Eastside Bowl '58",
+    location: 'Nashville, TN',
+    ticketUrl: 'https://www.eventim.us/event/the-58-altalune/658352',
+    hasPresale: true,
+  },
+
+  { id: 12,
+    date: 'September 05, 2025',
+    venue: 'Twisted Tea Garden',
+    location: 'Madison, TN',
+    hasPresale: false,
+  },
+
+  { id:13,
+    date: 'November 07, 2025',
+    venue: '5 Spot',
+    location: 'Nashville, TN',
+    hasPresale: false,
+  },
+
+  { id: 2,
+    date: 'July 16, 2025',
+    venue: 'Arcane Workshop',
+    location: 'Madison, TN',
+  },
+
+  { id: 3,
+    date: 'July 02, 2025',
+    venue: 'JBJs', location:
+    'Nashville, TN',
+  },
+    
+  { id: 4,
+    date: 'June 27, 2025',
+    venue: 'The Dollhouse',
+    location: 'Mufreesboro, TN',
+  },
+
+  { id: 5,
+    date: 'June 13, 2025',
+    venue: 'The Vinyl Lounge',
+    location: 'Nashville, TN',
+  },
+
+  { id: 6,
+    date: 'May 24, 2025',
+    venue: 'The Dollhouse',
+    location: 'Murfreesboro, TN',
+  },
+  { id: 7,
+    date: 'May 23, 2025',
+    venue: 'Basement East',
+    location: 'Nashville, TN',
+  },
+  { id: 8,
+    date: 'April 10, 2025',
+    venue: 'Bettys',
+    location: 'Nashville, TN',
+  },
+  { id: 9,
+    date: 'March 28, 2025',
+    venue: 'High Ground',
+    location: 'Nashville, TN',
+  },
+  { id: 10,
+    date: 'January 30, 2025',
+    venue: 'Springwater',
+    location: 'Nashville, TN',
+  },
 ];
 
 export default function ShowsSection() {
-  const upcoming = shows.filter(show => show.isUpcoming);
-  const past = shows.filter(show => !show.isUpcoming);
-  console.log("Showing mobile version");
+  const upcoming = shows.filter(show => isUpcoming(show.date));
+  const past = shows.filter(show => !isUpcoming(show.date));
 
   return (
     <section id="shows" className="bg-black text-white px-4 py-10 space-y-10">
@@ -52,6 +122,19 @@ export default function ShowsSection() {
               )}
               <p className="text-base font-semibold">{show.date}</p>
               <p className="text-sm italic">{show.venue} — {show.location}</p>
+              {/* Ticket Logic */}
+              {show.hasPresale && show.ticketUrl ? (
+                <a
+                  href={show.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='mt-2 inline-block rounded-xl border border-altalune-orange text-altalune-orange hover:bg-altalune-orange hover:text-black text-xs px-3 py-1 font-semibold transition'
+                >
+                  Tickets
+                </a>
+              ) : (
+                <span className='mt-2 block text-xs italic text-gray-500'>No presale</span>
+              )}
             </div>
           ))}
         </div>
