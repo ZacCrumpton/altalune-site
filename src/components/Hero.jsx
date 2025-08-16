@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import bandPhotoDesktop from "../../public/images/band1.webp";
-import bandPhotoMobile from "../../public/images/band1-mobile.webp"; // swap to .avif if you like
+import bandPhotoMobile from "../../public/images/band1-mobile.webp";
 import logo from "../assets/logos/Alta_Logo.png";
 import noise from "../../public/images/noise.webp";
 import HeroTextMotion from "./HeroTextMotion";
@@ -44,23 +44,30 @@ export default function Hero() {
       className="relative w-full overflow-hidden text-white bg-altalune-black
                  h-[calc(100svh-64px)] md:h-screen"
     >
-      {/* MOBILE: show full portrait, no crop, no parallax */}
-      <img
-        src={bandPhotoMobile}
-        alt="Altalune (mobile)"
-        className="h-full w-auto max-w-full object-contain object-top"
-      />
+     {/* Unified hero image via <picture> — no mobile flash on desktop */}
+      <picture className="absolute inset-0 block">
+        {/* Desktop sources */}
+        <source media="(min-width: 768px)" srcSet={bandPhotoDesktop} type="image/webp" />
 
-      {/* DESKTOP: parallax hero, unchanged behavior */}
-      <motion.img
-        src={bandPhotoDesktop}
-        alt="Altalune (desktop)"
-        className="hidden md:block absolute inset-0 h-full w-full object-cover object-center"
-        style={{ y: bgY }}
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      />
+        {/* Mobile sources */}
+        <source media="(max-width: 767px)" srcSet={bandPhotoMobile} type="image/avif" />
+
+        {/* Fallback img */}
+        <motion.img
+          src={bandPhotoDesktop}
+          alt="Altalune hero"
+          className="absolute inset-0 w-full h-full
+                    object-contain md:object-cover
+                    object-top md:object-center"
+          style={window.innerWidth >= 768 ? { y: bgY } : undefined}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
 
       {/* Noise Texture */}
       <div
