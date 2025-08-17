@@ -4,7 +4,7 @@ import { FaInstagram, FaSpotify, FaEnvelope } from 'react-icons/fa';
 import heroImage from "../../public/images/contact_bg.webp";
 
 // TODO: Replace with YOUR deployed Google Apps Script Web App URL
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1kgrPKfpukDAOSBQmFD1fg0LcFIEYrmXogFMOxnCrcIM6-pFcdAltTPL5tGYr1U8sdQ/exec";
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYBfrm78yOqAxDiiO_dYhxodkxftjv0PTxJizJxc7YKz88qSxXW7_9wljtqp4SOh53gQ/exec";
 
 export default function Contact() {
   // Mailing list UI state
