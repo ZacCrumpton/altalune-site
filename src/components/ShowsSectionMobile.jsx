@@ -9,79 +9,88 @@ function isUpcoming(dateString) {
 }
 
 const shows = [
-  { id: 1,
-    date: 'August 15, 2025',
-    venue: 'Indie Luna',
+   {
+    id: 13,
+    date: 'November 07, 2025',
+    venue: "5 Spot",
     location: 'Nashville, TN',
+    ticketUrl: '',
+    hasPresale: false,
   },
-
-  { id: 11,
+  {
+    id: 12,
+    date: 'September 05, 2025',
+    venue: "Twisted Tea Garden",
+    location: 'Madison, TN',
+    ticketUrl: '',
+    hasPresale: false,
+  },
+  {
+ id: 11,
     date: 'August 30, 2025',
     venue: "Eastside Bowl '58",
     location: 'Nashville, TN',
     ticketUrl: 'https://www.eventim.us/event/the-58-altalune/658352',
     hasPresale: true,
   },
-
-  { id: 12,
-    date: 'September 05, 2025',
-    venue: 'Twisted Tea Garden',
-    location: 'Madison, TN',
-    hasPresale: false,
-  },
-
-  { id:13,
-    date: 'November 07, 2025',
-    venue: '5 Spot',
+  {
+     id: 10,
+    date: 'August 15, 2025',
+    venue: 'Indie Luna',
     location: 'Nashville, TN',
-    hasPresale: false,
+    ticketUrl: '',
+    hasPresale: false
   },
-
-  { id: 2,
+  {
+    id: 9,
     date: 'July 16, 2025',
     venue: 'Arcane Workshop',
     location: 'Madison, TN',
   },
-
-  { id: 3,
+  {
+    id: 8,
     date: 'July 02, 2025',
-    venue: 'JBJs', location:
-    'Nashville, TN',
+    venue: 'JBJs',
+    location: 'Nashville, TN',
   },
-    
-  { id: 4,
+  {
+    id: 7,
     date: 'June 27, 2025',
     venue: 'The Dollhouse',
     location: 'Mufreesboro, TN',
   },
-
-  { id: 5,
+  {
+    id: 6,
     date: 'June 13, 2025',
     venue: 'The Vinyl Lounge',
     location: 'Nashville, TN',
   },
-
-  { id: 6,
+  {
+    id: 5,
     date: 'May 24, 2025',
     venue: 'The Dollhouse',
     location: 'Murfreesboro, TN',
   },
-  { id: 7,
+  {
+    id: 4,
     date: 'May 23, 2025',
     venue: 'Basement East',
     location: 'Nashville, TN',
   },
-  { id: 8,
+  {
+    id: 3,
     date: 'April 10, 2025',
     venue: 'Bettys',
     location: 'Nashville, TN',
   },
-  { id: 9,
+  {
+    id: 2,
     date: 'March 28, 2025',
     venue: 'High Ground',
     location: 'Nashville, TN',
   },
-  { id: 10,
+  {
+    id: 1,
     date: 'January 30, 2025',
     venue: 'Springwater',
     location: 'Nashville, TN',
