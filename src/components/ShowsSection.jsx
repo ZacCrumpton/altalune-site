@@ -156,7 +156,7 @@ export default function ShowsSection() {
             </div>
           ) : (
             <p className="text-lg italic text-gray-400 mb-16">
-              No upcoming shows. <a href="mailto:booking@altalune.com" className="underline hover:text-altalune-orange">Book us now.</a>
+              No upcoming shows. <a href="mailto:altalunemusic22@gmail.com" className="underline hover:text-altalune-orange">Book us now.</a>
             </p>
           )}
 
