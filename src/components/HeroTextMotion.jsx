@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const HeroTextMotion = () => {
+const HeroTextMotion = ({heroTitle, heroSubtitle}) => {
   const { scrollYProgress } = useScroll();
 
   // Horizontal scroll motion
   const h1X = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
   const pX = useTransform(scrollYProgress, [0, 1], ['0%', '-100%']);
 
+  const titleLines = (heroTitle || '').split('\n')
+  const subtitleLines = (heroSubtitle || '').split('\n')
+
   return (
-    <div className="text-center mt-4 md:mt-6 px-2 pt-20">
+    <div className="text-center mt-4 md:mt-6 px-2">
       <motion.h1
         style={{ x: h1X, fontFamily: "'Courier Prime', monospace" }}
         className="text-lg sm:text-xl md:text-4xl font-bold text-gray-300 leading-snug sm:leading-normal"
@@ -17,7 +20,12 @@ const HeroTextMotion = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.0, duration: 1 }}
       >
-        When The Days Feel <br/> Long and Endless
+        {titleLines.map((line, idx) => (
+          <React.Fragment key={idx}>
+            {line}
+            {idx < titleLines.length - 1 && <br />}
+          </React.Fragment>
+        ))}
       </motion.h1>
 
       <motion.p
@@ -26,9 +34,14 @@ const HeroTextMotion = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.5, duration: 1 }}
->
-  Available August 29th<br/>on all streaming platforms.
-</motion.p>
+        >
+        {subtitleLines.map((line, idx) => (
+          <React.Fragment key={idx}>
+            {line}
+            {idx < subtitleLines.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+        </motion.p>
     </div>
   );
 };

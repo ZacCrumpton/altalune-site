@@ -1,5 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { client, urlFor } from '../sanityClient';
 import bandPhotoDesktop from "../../public/images/band1.webp";
 import bandPhotoMobile from "../../public/images/band1-mobile.webp";
 import logo from "../assets/logos/Alta_Logo.png";
@@ -7,6 +8,7 @@ import noise from "../../public/images/noise.webp";
 import HeroTextMotion from "./HeroTextMotion";
 
 export default function Hero() {
+  console.log('Hero rendered');
   const containerRef = useRef(null);
   const textRef = useRef(null);
 
@@ -38,23 +40,75 @@ export default function Hero() {
   const logoScale = useSpring(rawLogoScale, { stiffness: 100, damping: 20 });
   const logoOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0.5]);
 
+
+  const [heroImageUrl, setHeroImageUrl] = useState(null);
+  const [heroMobileImageUrl, setHeroMobileImageUrl] = useState(null);
+
+const HERO_QUERY = `*[_type == "heroHomePageSettings"][0]{
+  heroTitle,
+  heroSubtitle,
+  heroDesktopImage,
+  heroMobileImage
+}`;
+
+  const [heroTitle, setHeroTitle] = useState('');
+  const [heroSubtitle, setHeroSubtitle] = useState('');
+
+useEffect(() => {
+  client
+    .fetch(HERO_QUERY)
+    .then((data) => {
+      console.log('Sanity heroHomePageSettings:', data);
+
+      if (data?.heroDesktopImage) {
+        const desktop = urlFor(data.heroDesktopImage)
+          .width(1920)
+          .quality(80)
+          .url();
+        setHeroImageUrl(desktop);
+      }
+
+      if (data?.heroMobileImage) {
+        const mobile = urlFor(data.heroMobileImage)
+          .width(900)
+          .quality(80)
+          .url();
+        setHeroMobileImageUrl(mobile);
+      }
+
+      setHeroTitle(data.heroTitle || '');
+      setHeroSubtitle(data.heroSubtitle || '');
+    })
+    .catch((err) => {
+      console.error('Error fetching heroHomePageSettings:', err);
+    });
+}, []);
+
   return (
-    <section
+   <section
       ref={containerRef}
       className="relative w-full overflow-hidden text-white bg-altalune-black
-                 h-[calc(100svh-64px)] md:h-screen"
+                h-[calc(100svh-64px)] md:h-screen"
     >
-     {/* Unified hero image via <picture> — no mobile flash on desktop */}
+      {/* Unified hero image via <picture> — now driven by Sanity, with local fallbacks */}
       <picture className="absolute inset-0 block">
-        {/* Desktop sources */}
-        <source media="(min-width: 768px)" srcSet={bandPhotoDesktop} type="image/webp" />
+        {/* Desktop source (Sanity -> fallback to local) */}
+        <source
+          media="(min-width: 768px)"
+          srcSet={heroImageUrl || bandPhotoDesktop}
+          type="image/webp"
+        />
 
-        {/* Mobile sources */}
-        <source media="(max-width: 767px)" srcSet={bandPhotoMobile} type="image/avif" />
+        {/* Mobile source (Sanity -> fallback to local) */}
+        <source
+          media="(max-width: 767px)"
+          srcSet={heroMobileImageUrl || bandPhotoMobile}
+          type="image/avif"
+        />
 
         {/* Fallback img */}
         <motion.img
-          src={bandPhotoDesktop}
+          src={heroImageUrl || bandPhotoDesktop}
           alt="Altalune hero"
           className="absolute inset-0 w-full h-full
                     object-contain md:object-cover
@@ -64,8 +118,9 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
           loading="eager"
-          fetchpriority="high"
           decoding="async"
+          // keep / remove fetchPriority here based on whatever fixed your warning
+          // fetchPriority="high"
         />
       </picture>
 
@@ -77,7 +132,7 @@ export default function Hero() {
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 pointer-events-none
-                       bg-gradient-to-b from-black/30 md: from-black/60 to-black/90" />
+                       bg-gradient-to-b from-black/30 from-black/60 to-black/90" />
 
       {/* Foreground Content */}
       <div
@@ -93,7 +148,7 @@ export default function Hero() {
           transition={{ delay: 1, duration: 1, ease: "easeOut" }}
           style={{ scale: logoScale, opacity: logoOpacity }}
         />
-        <HeroTextMotion scrollProgress={textScroll.scrollYProgress} />
+        <HeroTextMotion heroTitle={heroTitle} heroSubtitle={heroSubtitle} scrollProgress={textScroll.scrollYProgress} />
       </div>
     </section>
   );

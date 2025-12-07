@@ -1,5 +1,14 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { client } from '../sanityClient';
+
+const SHOWS_QUERY = `*[_type == "show"]{
+  _id,
+  date,
+  venue,
+  location,
+  ticketUrl,
+  hasPresale
+}`;
 
 function isUpcoming(dateString) {
   const showDate = new Date(dateString);
@@ -8,99 +17,132 @@ function isUpcoming(dateString) {
   return showDate >= today;
 }
 
-const shows = [
-  {
-    id: 13,
-    date: 'November 07, 2025',
-    venue: "5 Spot",
-    location: 'Nashville, TN',
-    ticketUrl: '',
-    hasPresale: false,
-  },
-  {
-    id: 12,
-    date: 'September 05, 2025',
-    venue: "Twisted Tea Garden",
-    location: 'Madison, TN',
-    ticketUrl: '',
-    hasPresale: false,
-  },
-  {
- id: 11,
-    date: 'August 30, 2025',
-    venue: "Eastside Bowl '58",
-    location: 'Nashville, TN',
-    ticketUrl: 'https://www.eventim.us/event/the-58-altalune/658352',
-    hasPresale: true,
-  },
-  {
-     id: 10,
-    date: 'August 15, 2025',
-    venue: 'Indie Luna',
-    location: 'Nashville, TN',
-    ticketUrl: '',
-    hasPresale: false
-  },
-  {
-    id: 9,
-    date: 'July 16, 2025',
-    venue: 'Arcane Workshop',
-    location: 'Madison, TN',
-  },
-  {
-    id: 8,
-    date: 'July 02, 2025',
-    venue: 'JBJs',
-    location: 'Nashville, TN',
-  },
-  {
-    id: 7,
-    date: 'June 27, 2025',
-    venue: 'The Dollhouse',
-    location: 'Mufreesboro, TN',
-  },
-  {
-    id: 6,
-    date: 'June 13, 2025',
-    venue: 'The Vinyl Lounge',
-    location: 'Nashville, TN',
-  },
-  {
-    id: 5,
-    date: 'May 24, 2025',
-    venue: 'The Dollhouse',
-    location: 'Murfreesboro, TN',
-  },
-  {
-    id: 4,
-    date: 'May 23, 2025',
-    venue: 'Basement East',
-    location: 'Nashville, TN',
-  },
-  {
-    id: 3,
-    date: 'April 10, 2025',
-    venue: 'Bettys',
-    location: 'Nashville, TN',
-  },
-  {
-    id: 2,
-    date: 'March 28, 2025',
-    venue: 'High Ground',
-    location: 'Nashville, TN',
-  },
-  {
-    id: 1,
-    date: 'January 30, 2025',
-    venue: 'Springwater',
-    location: 'Nashville, TN',
-  },
-];
-
 export default function ShowsSection() {
-  const upcoming = shows.filter(show => isUpcoming(show.date));
-  const past = shows.filter(show => !isUpcoming(show.date));
-  console.log("Showing desktop version");
+  const [cmsShows, setCmsShows] = useState([]);
+
+  // your existing static shows stay as-is
+  const shows = [
+    {
+      id: 13,
+      date: 'November 07, 2025',
+      venue: "5 Spot",
+      location: 'Nashville, TN',
+      ticketUrl: '',
+      hasPresale: false,
+    },
+    {
+      id: 12,
+      date: 'September 05, 2025',
+      venue: "Twisted Tea Garden",
+      location: 'Madison, TN',
+      ticketUrl: '',
+      hasPresale: false,
+    },
+    {
+      id: 11,
+      date: 'August 30, 2025',
+      venue: "Eastside Bowl '58",
+      location: 'Nashville, TN',
+      ticketUrl: 'https://www.eventim.us/event/the-58-altalune/658352',
+      hasPresale: true,
+    },
+    {
+      id: 10,
+      date: 'August 15, 2025',
+      venue: 'Indie Luna',
+      location: 'Nashville, TN',
+      ticketUrl: '',
+      hasPresale: false,
+    },
+    {
+      id: 9,
+      date: 'July 16, 2025',
+      venue: 'Arcane Workshop',
+      location: 'Madison, TN',
+    },
+    {
+      id: 8,
+      date: 'July 02, 2025',
+      venue: 'JBJs',
+      location: 'Nashville, TN',
+    },
+    {
+      id: 7,
+      date: 'June 27, 2025',
+      venue: 'The Dollhouse',
+      location: 'Mufreesboro, TN',
+    },
+    {
+      id: 6,
+      date: 'June 13, 2025',
+      venue: 'The Vinyl Lounge',
+      location: 'Nashville, TN',
+    },
+    {
+      id: 5,
+      date: 'May 24, 2025',
+      venue: 'The Dollhouse',
+      location: 'Murfreesboro, TN',
+    },
+    {
+      id: 4,
+      date: 'May 23, 2025',
+      venue: 'Basement East',
+      location: 'Nashville, TN',
+    },
+    {
+      id: 3,
+      date: 'April 10, 2025',
+      venue: 'Bettys',
+      location: 'Nashville, TN',
+    },
+    {
+      id: 2,
+      date: 'March 28, 2025',
+      venue: 'High Ground',
+      location: 'Nashville, TN',
+    },
+    {
+      id: 1,
+      date: 'January 30, 2025',
+      venue: 'Springwater',
+      location: 'Nashville, TN',
+    },
+  ];
+
+  useEffect(() => {
+    client
+      .fetch(SHOWS_QUERY)
+      .then((data) => {
+        setCmsShows(data || []);
+      })
+      .catch((err) => {
+        console.error('Error fetching shows from Sanity:', err);
+      });
+  }, []);
+
+  // Normalize CMS shows to match your static structure
+  const normalizedCmsShows = cmsShows.map((show) => ({
+    ...show,
+    id: show._id, // use Sanity _id as React key/id
+    hasPresale:
+      typeof show.hasPresale === 'boolean'
+        ? show.hasPresale
+        : !!show.ticketUrl,
+  }));
+
+  // Combine original shows + CMS shows
+  const allShows = [...shows, ...normalizedCmsShows];
+
+  const upcoming = allShows
+    .filter((show) => isUpcoming(show.date))
+    .sort((a, b) => new Date(a.date) - new Date(b.date)); // soonest first
+
+  const past = allShows
+    .filter((show) => !isUpcoming(show.date))
+    .sort((a, b) => new Date(b.date) - new Date(a.date)); // most recent first
+
+  console.log('Showing desktop version');
 
   return (
     <section id="shows" className="bg-black text-white px-0 py-20">
@@ -137,40 +179,54 @@ export default function ShowsSection() {
                     </span>
                   )}
                   <p className="text-xl font-semibold">{show.date}</p>
-                  <p className="text-lg italic">{show.venue} — {show.location}</p>
+                  <p className="text-lg italic">
+                    {show.venue} — {show.location}
+                  </p>
                   {show.hasPresale && show.ticketUrl ? (
                     <a
-                  href={show.ticketUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-block rounded-xl border border-altalune-orange text altalune-orange hover:bg-altalune-orange hover:text-black text-xs px-3 py-1 font-semibold transition"
-                  >
-                    Tickets
-                  </a>
+                      href={show.ticketUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-block rounded-xl border border-altalune-orange text altalune-orange hover:bg-altalune-orange hover:text-black text-xs px-3 py-1 font-semibold transition"
+                    >
+                      Tickets
+                    </a>
                   ) : (
-                    <span className='mt-2 block text-xs italic text-grey-500'>No presale</span>
+                    <span className="mt-2 block text-xs italic text-grey-500">
+                      No presale
+                    </span>
                   )}
-                  
                 </div>
               ))}
             </div>
           ) : (
             <p className="text-lg italic text-gray-400 mb-16">
-              No upcoming shows. <a href="mailto:altalunemusic22@gmail.com" className="underline hover:text-altalune-orange">Book us now.</a>
+              No upcoming shows.{' '}
+              <a
+                href="mailto:altalunemusic22@gmail.com"
+                className="underline hover:text-altalune-orange"
+              >
+                Book us now.
+              </a>
             </p>
           )}
 
           <h3 className="text-2xl uppercase text-gray-500 mb-4">Past Shows</h3>
           <div className="grid gap-4">
-            {past.map(show => (
-              <div key={show.id} className="opacity-50 hover:opacity-80 transition-opacity duration-200 border-b border-gray-700 pb-2">
-                <p className="text-md">{show.date} — <span className="font-medium">{show.venue}</span>, {show.location}</p>
+            {past.map((show) => (
+              <div
+                key={show.id}
+                className="opacity-50 hover:opacity-80 transition-opacity duration-200 border-b border-gray-700 pb-2"
+              >
+                <p className="text-md">
+                  {show.date} — <span className="font-medium">{show.venue}</span>,{' '}
+                  {show.location}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </div>
     </section>
-    
   );
 }
