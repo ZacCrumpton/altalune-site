@@ -152,7 +152,7 @@ useEffect(() => {
             }}
           >
             <video
-              src="/videos/liveclip.mp4"
+              src={videoUrl}
               className="w-full h-full object-cover object-[75%_45%]"
               autoPlay
               muted
